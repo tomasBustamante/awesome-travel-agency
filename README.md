@@ -335,12 +335,14 @@ Finally run the app in your local environment with the following command:
 awesome-travel-agency$ npm run dev
 ```
 
-This will let you access the blog in the URL: https://localhost:3000.
+This will let you access the blog in the URL: http://localhost:3000.
 
 The index page will look like this, listing every post with their corresponding links:
 
-<img src="./img/index_page.png" alt="index page screenshot" width="200"/>
+<img src="./img/index_page.png" alt="index page screenshot" width="400"/>
 
 If you click on a post, you will be redirected to the post page with the desired URL schema:
 
-<img src="./img/page_page.png" alt="post page screenshot" width="200"/>
+<img src="./img/post_page.png" alt="post page screenshot" width="500"/>
+
+The key of this solution is the routing in the `server.js` file and the `as` property of the `link` element in the `pages/index.js` file.
