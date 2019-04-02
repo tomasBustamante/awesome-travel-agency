@@ -1,5 +1,12 @@
 Server Side Routing for Clean URLs with Next.js
 ===
+
+1. [Scenario](#scenario)
+2. [Work Plan](#work-plan)
+3. [Activity Log](#activity-log)
+4. [General Requirements](#general-requirements)
+5. [Solution](#solution)
+
 Scenario
 ---
 A travel agency is trying to build a blog where they will be presenting their promotions and services. They've decided to use [Next.js](https://nextjs.org) framework to support server side rendering which is required to improve Google SEO.
@@ -301,7 +308,7 @@ $ sudo apt-get install nodejs
 Once we have Node installed we can use `npm` to install the rest of the required packages. We'll need to use the `--save` modifier to make the changes impact on the current project:
 
 ```console
-npm install --save react react-dom next express isomorphic-unfetch
+$ npm install --save react react-dom next express isomorphic-unfetch
 ```
 
 Optional packages like `reactstrap` can be installed the same way.
