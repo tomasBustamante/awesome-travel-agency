@@ -326,7 +326,7 @@ $ cd awesome-travel-agency
 Then follow the instructions mentioned before in order to install Node and the necessary packages from the project's root directory:
 
 ```console
-awesome-travel-agency$ npm install --save react react-dom next express isomorphic-unfetch
+awesome-travel-agency$ npm install
 ```
 
 Finally run the app in your local environment with the following command:
