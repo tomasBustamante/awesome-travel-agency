@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "next",
     "build": "next build",
-    "start": "cross-env NODE_ENV=production node server.js",
+    "now-build": "next build",
+    "start": "next start -p $PORT",
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "npm run build"
   },
