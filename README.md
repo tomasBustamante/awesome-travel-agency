@@ -336,3 +336,11 @@ awesome-travel-agency$ npm run dev
 ```
 
 This will let you access the blog in the URL: https://localhost:3000.
+
+The index page will look like this, listing every post with their corresponding links:
+
+![index page screenshot](./img/index_page.png)
+
+If you click on a post, you will be redirected to the post page with the desired URL schema:
+
+![post page screenshot](./img/post_page.png)
