@@ -315,3 +315,24 @@ Optional packages like `reactstrap` can be installed the same way.
 
 Solution
 ---
+
+In order to run the example you can clone this repository to run it in your local environment:
+
+```console
+$ git clone https://github.com/tomasBustamante/awesome-travel-agency.git
+$ cd awesome-travel-agency
+```
+
+Then follow the instructions mentioned before in order to install Node and the necessary packages from the project's root directory:
+
+```console
+awesome-travel-agency$ npm install --save react react-dom next express isomorphic-unfetch
+```
+
+Finally run the app in your local environment with the following command:
+
+```console
+awesome-travel-agency$ npm run dev
+```
+
+This will let you access the blog in the URL: https://localhost:3000.
