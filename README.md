@@ -201,6 +201,8 @@ Inside the `Blog` function we call the function `getPosts()` and use `next/link`
 The post page example will simply show each parameter from the URL so that they can be use to hit the backend to retrieve the needed information:
 
 ```javascript
+// pages/post.js
+
 import { withRouter } from 'next/router'
 import Layout from '../components/MyLayout.js'
 
@@ -219,9 +221,90 @@ export default Page
 
 ### 5. Fetch data
 
+With the previous steps we can already render a sample page with hardcoded data for our posts using the requested URL format. If we wanted to fetch the data from a JSON API we would need to install [isomorphic-unfetch](https://github.com/developit/unfetch) as follows:
+
 ```console
 $ npm install --save isomorphic-unfetch
 ```
+
+After doing that we would need to modify the `index.js` page so that we don't use the hardcoded `getPosts()` function anymore and instead fetch the data from the API and parse it as a JSON file (in the example below, <API URL> should be replaced by the actual URL of the API).
+
+```javascript
+const Blog = (props) => (
+  <Layout>
+    <h1>Awesome Travel Agency</h1>
+    <ul>
+      {props.posts.map(post => (
+        <li key={post.promo_id}>
+          <Link as={`/${post.entity}/${post.promo_id}/${post.seo_text}`} href={`/post?title=${post.title}&entity=${post.entity}&promo_id=${post.promo_id}&seo_text=${post.seo_text}`}>
+            <a>{post.title}</a>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  </Layout>
+)
+
+Blog.getInitialProps = async function() {
+  const res = await fetch('https://<API URL>/search/posts')
+  const data = await res.json()
+
+  return {
+    shows: data.map(entry => entry.post)
+  }
+}
+
+export default Blog
+```
+
+In a similar way, the `post.js` file should also be modified. In this example we're using the same URL for the API but using the `promo_id` to fetch the desired post and then access its attributes:
+
+```javascript
+import Layout from '../components/MyLayout.js'
+import fetch from 'isomorphic-unfetch'
+
+const Post = props => (
+  <Layout>
+    <h1>{props.post.title}</h1>
+    <p><strong>Entity: </strong>{props.post.entity}</p>
+    <p><strong>Promo ID: </strong>{props.post.promo_id}</p>
+    <p><strong>SEO Text: </strong>{props.post.seo_text}</p>
+    <p>{props.post.content}</p>
+    <img src={props.post.image} />
+  </Layout>
+)
+
+Post.getInitialProps = async function(context) {
+  const { entity, promo_id, seo_text } = context.query
+  const res = await fetch(`https://<API URL>/posts/${promo_id}`)
+  const post = await res.json()
+
+  return { post }
+}
+
+export default Post
+```
+
+Note that in order for this to work we're using the first argument of `getInitialProps`, which is `context`, which has a query field that is simply the query string section of the URL parsed as an object. In that example we're just using `promo_id` but we could also use `entity` and `seo_text` if needed.
+
+General Requirements
+---
+
+Before doing anything we have to make sure that [Node.js](https://nodejs.org) is installed. We can check that by executing `$ node -v`. If it's not installed, we can download and install it on Ubuntu as follows:
+
+```console
+$ sudo apt-get install curl python-software-properties
+$ curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+$ sudo apt-get install nodejs
+```
+
+Once we have Node installed we can use `npm` to install the rest of the required packages. We'll need to use the `--save` modifier to make the changes impact on the current project:
+
+```console
+npm install --save react react-dom next express isomorphic-unfetch
+```
+
+Optional packages like `reactstrap` can be installed the same way.
 
 Solution
 ---
