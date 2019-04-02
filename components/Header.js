@@ -6,16 +6,16 @@ const linkStyle = {
 
 const Header = () => (
   <div>
-  <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
-    <a class="navbar-brand" href="/">ATA</a>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav">
-        <li class="nav-item">
+  <nav className="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+    <a className="navbar-brand" href="/">ATA</a>
+    <div className="collapse navbar-collapse" id="navbarCollapse">
+      <ul className="navbar-nav">
+        <li className="nav-item">
           <Link href="/">
             <a style={linkStyle}>Home</a>
           </Link>
         </li>
-        <li class="nav-item">
+        <li className="nav-item">
           <Link href="/about">
             <a style={linkStyle}>About</a>
           </Link>
